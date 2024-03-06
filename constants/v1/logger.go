@@ -80,8 +80,8 @@ const (
 	ParseConfigError = "error parse config %v err: %v\n"
 	InitLoggerError  = "error Init logger err: %v\n"
 
-	ConnDBError     = "conn to the db err: %v"
-	InitEngineError = "init engine err: %v"
-
-	InvalidOperation = "invalid operation: %v"
+	ConnDBError       = "conn to the db err: %v"
+	InitEngineError   = "init engine err: %v"
+	ParseRequestError = "parse request err: %v"
+	InvalidOperation  = "invalid operation: %v"
 )

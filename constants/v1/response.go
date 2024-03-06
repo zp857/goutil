@@ -24,6 +24,7 @@ const (
 
 	EngineClose     = "引擎当前为关闭状态"
 	EngineCloseWarn = "引擎当前为关闭状态，无法执行任务"
+	EngineSwitch    = "引擎状态切换为 %v"
 
 	TaskCreateSuccess = "任务创建成功"
 	TaskCreateFail    = "任务创建失败"
