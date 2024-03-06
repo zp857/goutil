@@ -13,13 +13,13 @@ import (
 type Consumer struct {
 	urls        []string
 	config      *sarama.Config
-	TopicMap    map[string]string
+	TopicMap    map[string]any
 	bindings    []HandlerBinding
 	middlewares []MiddlewareFunc
 	logger      *zap.SugaredLogger
 }
 
-func NewConsumer(urls []string, topicMap map[string]string) (consumer *Consumer) {
+func NewConsumer(urls []string, topicMap map[string]any) (consumer *Consumer) {
 	config := sarama.NewConfig()
 	config.Consumer.Offsets.Initial = sarama.OffsetNewest
 	return &Consumer{
