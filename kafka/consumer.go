@@ -13,7 +13,7 @@ import (
 type Consumer struct {
 	urls        []string
 	config      *sarama.Config
-	TopicMap    map[string]any
+	TopicMap    map[string]interface{}
 	bindings    []HandlerBinding
 	middlewares []MiddlewareFunc
 	logger      *zap.SugaredLogger
