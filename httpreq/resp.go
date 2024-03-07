@@ -20,3 +20,16 @@ func GetHeaderString(resp *req.Response) (headerString string) {
 	}
 	return headerString
 }
+
+func GetHeaderMap(resp *req.Response) (headerMap map[string][]string) {
+	headerMap = map[string][]string{}
+	for k := range resp.Header {
+		if k != constants.SetCookieHeader {
+			headerMap[k] = append(headerMap[k], resp.Header.Get(k))
+		}
+	}
+	for _, ck := range resp.Cookies() {
+		headerMap[constants.SetCookieHeader] = append(headerMap[constants.SetCookieHeader], ck.String())
+	}
+	return headerMap
+}
