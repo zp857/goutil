@@ -22,7 +22,7 @@ func GetHeaderString(resp *req.Response) (headerString string) {
 }
 
 func GetHeaderMap(resp *req.Response) (headerMap map[string][]string) {
-	headerMap = map[string][]string{}
+	headerMap = make(map[string][]string)
 	for k := range resp.Header {
 		if k != constants.SetCookieHeader {
 			headerMap[k] = append(headerMap[k], resp.Header.Get(k))
