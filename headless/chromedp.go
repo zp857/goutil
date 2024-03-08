@@ -13,7 +13,7 @@ type Options struct {
 	Timeout    time.Duration
 }
 
-func NewChromedp(options *Options) context.Context {
+func NewChromedp(options *Options) (ctx context.Context, cancel context.CancelFunc) {
 	opts := append(
 		// 以默认配置的数组为基础，覆写 headless 参数
 		// 当然也可以根据自己的需要进行修改，这个 flag 是浏览器的设置
@@ -34,19 +34,18 @@ func NewChromedp(options *Options) context.Context {
 	if options.ChromePath != "" {
 		opts = append(opts, chromedp.ExecPath(options.ChromePath))
 	}
-	ctx, _ := chromedp.NewExecAllocator(
+	ctx, _ = chromedp.NewExecAllocator(
 		context.Background(),
 		opts...,
 	)
-	ctx, _ = chromedp.NewContext(
+	ctx, cancel = chromedp.NewContext(
 		ctx,
 	)
-
-	return ctx
+	return
 }
 
 func NewChromedpWithTimeout(options *Options) (context.Context, context.CancelFunc) {
-	ctx := NewChromedp(options)
-	ctx, cancel := context.WithTimeout(ctx, options.Timeout)
+	ctx, cancel := NewChromedp(options)
+	ctx, cancel = context.WithTimeout(ctx, options.Timeout)
 	return ctx, cancel
 }
