@@ -8,6 +8,7 @@ require (
 	github.com/dustin/go-humanize v1.0.1
 	github.com/forgoer/openssl v1.6.0
 	github.com/gin-gonic/gin v1.9.1
+	github.com/go-rod/rod v0.114.8
 	github.com/imroc/req/v3 v3.42.3
 	github.com/lestrrat-go/file-rotatelogs v2.4.0+incompatible
 	github.com/shirou/gopsutil/v3 v3.23.12
@@ -100,6 +101,11 @@ require (
 	github.com/tklauser/numcpus v0.6.1 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.11 // indirect
+	github.com/ysmood/fetchup v0.2.3 // indirect
+	github.com/ysmood/goob v0.4.0 // indirect
+	github.com/ysmood/got v0.34.1 // indirect
+	github.com/ysmood/gson v0.7.3 // indirect
+	github.com/ysmood/leakless v0.8.0 // indirect
 	github.com/yusufpapurcu/wmi v1.2.3 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/mock v0.4.0 // indirect

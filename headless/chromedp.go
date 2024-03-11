@@ -6,14 +6,14 @@ import (
 	"time"
 )
 
-type Options struct {
+type ChromedpOptions struct {
 	Headless   bool   `json:"headless"`
 	Proxy      string `json:"proxy"`
 	ChromePath string `json:"chromePath"`
-	Timeout    time.Duration
+	Timeout    int    `json:"timeout"`
 }
 
-func NewChromedp(options *Options) (ctx context.Context, cancel context.CancelFunc) {
+func NewChromedp(options *ChromedpOptions) (ctx context.Context, cancel context.CancelFunc) {
 	opts := append(
 		// 以默认配置的数组为基础，覆写 headless 参数
 		// 当然也可以根据自己的需要进行修改，这个 flag 是浏览器的设置
@@ -41,11 +41,6 @@ func NewChromedp(options *Options) (ctx context.Context, cancel context.CancelFu
 	ctx, cancel = chromedp.NewContext(
 		ctx,
 	)
+	ctx, cancel = context.WithTimeout(ctx, time.Duration(options.Timeout)*time.Second)
 	return
-}
-
-func NewChromedpWithTimeout(options *Options) (context.Context, context.CancelFunc) {
-	ctx, cancel := NewChromedp(options)
-	ctx, cancel = context.WithTimeout(ctx, options.Timeout)
-	return ctx, cancel
 }
