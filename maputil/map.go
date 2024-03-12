@@ -1,5 +1,15 @@
 package maputil
 
+func GetKeyByValue[K comparable, V comparable](m map[K]V, value V) (k K, found bool) {
+	var zeroK K
+	for k, v := range m {
+		if v == value {
+			return k, true
+		}
+	}
+	return zeroK, false
+}
+
 func Keys[K comparable, V any](m map[K]V) []K {
 	keys := make([]K, len(m))
 	var i int
