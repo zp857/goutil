@@ -1,6 +1,7 @@
 package urlutil
 
 import (
+	"github.com/zp857/goutil/slice"
 	"net/url"
 	"path/filepath"
 	"strings"
@@ -36,4 +37,17 @@ func GetFileExt(link string) string {
 	ext := filepath.Ext(u.Path)
 	ext = strings.ToLower(ext)
 	return ext
+}
+
+func GetUniqueURLs(links []string) (urls []string) {
+	for _, link := range links {
+		u, err := url.Parse(link)
+		if err != nil {
+			continue
+		}
+		u.RawQuery = ""
+		urls = append(urls, u.String())
+	}
+	urls = slice.Unique(urls)
+	return
 }
