@@ -8,10 +8,11 @@ import (
 )
 
 type RodOptions struct {
-	Headless bool   `json:"headless"`
-	Proxy    string `json:"proxy"`
-	Timeout  int    `json:"timeout"`
-	Trace    bool   `json:"trace"`
+	Headless   bool   `json:"headless"`
+	Proxy      string `json:"proxy"`
+	MaxRuntime int    `json:"maxRuntime"`
+	Timeout    int    `json:"timeout"`
+	Trace      bool   `json:"trace"`
 }
 
 func NewRod(options *RodOptions) (browser *rod.Browser) {
@@ -36,5 +37,6 @@ func NewRod(options *RodOptions) (browser *rod.Browser) {
 	if options.Trace {
 		browser = browser.Trace(options.Trace).SlowMotion(2 * time.Second)
 	}
+	browser.NoDefaultDevice()
 	return
 }
