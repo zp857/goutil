@@ -18,12 +18,12 @@ func NewChromedp(options *ChromedpOptions) (ctx context.Context, cancel context.
 		chromedp.DefaultExecAllocatorOptions[:],
 		chromedp.Flag("headless", options.Headless),
 		chromedp.Flag("ignore-certificate-errors", true),
-		//chromedp.NoSandbox,
-		//chromedp.DisableGPU,
-		//chromedp.NoDefaultBrowserCheck,
-		//chromedp.NoFirstRun,
-		//chromedp.Flag("enable-automation", false),                       // 防止监测 webdriver
-		//chromedp.Flag("disable-blink-features", "AutomationControlled"), // 禁用 blink 特征，绕过了加速乐检测
+		chromedp.NoSandbox,
+		chromedp.DisableGPU,
+		chromedp.NoDefaultBrowserCheck,
+		chromedp.NoFirstRun,
+		chromedp.Flag("enable-automation", false),                       // 防止监测 webdriver
+		chromedp.Flag("disable-blink-features", "AutomationControlled"), // 禁用 blink 特征，绕过了加速乐检测
 	)
 	if options.Proxy != "" {
 		opts = append(opts, chromedp.ProxyServer(options.Proxy))

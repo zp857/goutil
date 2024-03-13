@@ -15,15 +15,16 @@ type RodOptions struct {
 }
 
 func NewRod(options *RodOptions) (browser *rod.Browser) {
-	l := launcher.NewAppMode("").
-		// default
+	l := launcher.New().
+		Headless(options.Headless).
 		Set("ignore-certificate-errors", "true").
-		Set("ignore-certificate-errors", "1").
 		Set("no-sandbox").
 		Set("disable-gpu").
 		Set("no-first-run").
+		Set("no-default-browser-check").
+		Set("enable-automation", "false"). // 防止监测 webdriver
+		Set("disable-blink-features", "AutomationControlled"). // 禁用 blink 特征，绕过了加速乐检测
 		Leakless(true).
-		Headless(options.Headless).
 		Devtools(false)
 	if options.Proxy != "" {
 		l.Set(flags.ProxyServer, options.Proxy)
