@@ -2,6 +2,7 @@ package headless
 
 import (
 	"context"
+	"fmt"
 	"github.com/chromedp/chromedp"
 	"time"
 )
@@ -40,4 +41,19 @@ func NewChromedp(options *ChromedpOptions) (ctx context.Context, cancel context.
 	)
 	ctx, cancel = context.WithTimeout(ctx, time.Duration(options.Timeout)*time.Second)
 	return
+}
+
+func GetHeaderString(headers map[string]interface{}) (headerString string) {
+	for k, v := range headers {
+		headerString += fmt.Sprintf("%v: %v\n", k, v)
+	}
+	return headerString
+}
+
+func GetHeaderMap(headers map[string]interface{}) (headerMap map[string][]string) {
+	headerMap = make(map[string][]string)
+	for k, v := range headers {
+		headerMap[k] = append(headerMap[k], fmt.Sprintf("%v", v))
+	}
+	return headerMap
 }

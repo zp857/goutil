@@ -30,13 +30,12 @@ func NewRod(options *RodOptions) (browser *rod.Browser) {
 	if options.Proxy != "" {
 		l.Set(flags.ProxyServer, options.Proxy)
 	}
-	browser = rod.New().ControlURL(l.MustLaunch())
+	browser = rod.New().NoDefaultDevice().MustConnect()
 	if options.Timeout > 0 {
 		browser = browser.Timeout(time.Duration(options.Timeout) * time.Second)
 	}
 	if options.Trace {
 		browser = browser.Trace(options.Trace).SlowMotion(2 * time.Second)
 	}
-	browser.NoDefaultDevice()
 	return
 }
