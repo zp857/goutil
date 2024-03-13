@@ -1,3 +1,4 @@
 .idea/
 logs/
 *_test.go
+*.png

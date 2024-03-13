@@ -15,12 +15,13 @@ type RodOptions struct {
 }
 
 func NewRod(options *RodOptions) (browser *rod.Browser) {
-	l := launcher.New().
+	l := launcher.NewAppMode("").
+		// default
 		Set("ignore-certificate-errors", "true").
 		Set("ignore-certificate-errors", "1").
-		Set("mute-audio", "true").
-		Set("incognito", "true").
-		Set("disable-blink-features", "AutomationControlled").
+		Set("no-sandbox").
+		Set("disable-gpu").
+		Set("no-first-run").
 		Leakless(true).
 		Headless(options.Headless).
 		Devtools(false)

@@ -15,18 +15,15 @@ type ChromedpOptions struct {
 
 func NewChromedp(options *ChromedpOptions) (ctx context.Context, cancel context.CancelFunc) {
 	opts := append(
-		// 以默认配置的数组为基础，覆写 headless 参数
-		// 当然也可以根据自己的需要进行修改，这个 flag 是浏览器的设置
 		chromedp.DefaultExecAllocatorOptions[:],
-		chromedp.NoSandbox,
-		chromedp.DisableGPU,
-		chromedp.NoDefaultBrowserCheck,
-		chromedp.NoFirstRun,
-		chromedp.Flag("headless", options.Headless), // 显示界面
-		chromedp.Flag("disable-web-security", true),
+		chromedp.Flag("headless", options.Headless),
 		chromedp.Flag("ignore-certificate-errors", true),
-		chromedp.Flag("enable-automation", false),                       // 防止监测 webdriver
-		chromedp.Flag("disable-blink-features", "AutomationControlled"), // 禁用 blink 特征，绕过了加速乐检测
+		//chromedp.NoSandbox,
+		//chromedp.DisableGPU,
+		//chromedp.NoDefaultBrowserCheck,
+		//chromedp.NoFirstRun,
+		//chromedp.Flag("enable-automation", false),                       // 防止监测 webdriver
+		//chromedp.Flag("disable-blink-features", "AutomationControlled"), // 禁用 blink 特征，绕过了加速乐检测
 	)
 	if options.Proxy != "" {
 		opts = append(opts, chromedp.ProxyServer(options.Proxy))
