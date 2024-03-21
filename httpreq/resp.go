@@ -33,3 +33,11 @@ func GetHeaderMap(resp *req.Response) (headerMap map[string][]string) {
 	}
 	return headerMap
 }
+
+func GetCert(resp *req.Response) (cert string) {
+	if resp.TLS != nil {
+		//cert = resp.TLS.PeerCertificates[0].Issuer.String()
+		cert = resp.TLS.PeerCertificates[0].Subject.String()
+	}
+	return cert
+}
