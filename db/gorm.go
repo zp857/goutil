@@ -21,7 +21,7 @@ func (c *Config) GormConfig(prefix string, singular bool) *gorm.Config {
 	}
 	_default := logger.New(NewWriter(log.New(os.Stdout, "\r\n", log.LstdFlags), c.LogZap), logger.Config{
 		SlowThreshold: 200 * time.Millisecond,
-		LogLevel:      logger.Warn,
+		LogLevel:      logger.Info,
 		Colorful:      false,
 	})
 	switch strings.ToLower(c.LogLevel) {
