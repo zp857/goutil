@@ -12,6 +12,6 @@ func Recover(cleanups ...func()) {
 	}
 
 	if p := recover(); p != nil {
-		zap.L().Sugar().Errorf(v1.RecoverWithStack, p, errorx.GetStack(1, 5))
+		zap.L().Sugar().Errorf(v1.RecoverWithStack, p, string(errorx.GetStack(1, 5)))
 	}
 }
