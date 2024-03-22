@@ -34,7 +34,7 @@ func (c *Config) GormConfig(prefix string, singular bool) *gorm.Config {
 	case v1.InfoLevel:
 		config.Logger = _default.LogMode(logger.Info)
 	default:
-		config.Logger = _default.LogMode(logger.Info)
+		config.Logger = _default.LogMode(logger.Error)
 	}
 	return config
 }
