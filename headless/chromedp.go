@@ -19,7 +19,6 @@ func NewChromedp(options *ChromedpOptions) (ctx context.Context, cancel context.
 		chromedp.DefaultExecAllocatorOptions[:],
 		chromedp.Flag("headless", options.Headless),
 		chromedp.Flag("ignore-certificate-errors", true),
-		chromedp.NoSandbox,
 		chromedp.DisableGPU,
 		chromedp.NoDefaultBrowserCheck,
 		chromedp.NoFirstRun,
